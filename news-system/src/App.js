@@ -1,9 +1,7 @@
+import IndexRouter from "./router/IndexRouter";
+import "./styles/global.scss";
 function App() {
-  return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
-  );
+  return <IndexRouter></IndexRouter>;
 }
 
 export default App;
