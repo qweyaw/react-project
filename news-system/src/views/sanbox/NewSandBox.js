@@ -1,72 +1,34 @@
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Layout } from "antd";
 import React from "react";
+import { Outlet } from "react-router-dom"
 import "./NewSandBox.css";
-const { Header, Content, Footer, Sider } = Layout;
+import SideMenu from "../../components/sandbox/SideMenu";
+import TopHeader from "../../components/sandbox/TopHeader";
+const { Content } = Layout;
 
 export default function NewSandBox() {
   return (
-    <Layout>
-      <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
-      >
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["4"]}
-          items={[
-            UserOutlined,
-            VideoCameraOutlined,
-            UploadOutlined,
-            UserOutlined,
-          ].map((icon, index) => ({
-            key: String(index + 1),
-            icon: React.createElement(icon),
-            label: `nav ${index + 1}`,
-          }))}
-        />
-      </Sider>
+    <Layout className='fl-row w-100vw h-100vh'>
+      <SideMenu></SideMenu>
       <Layout>
-        <Header
-          className="site-layout-sub-header-background"
-          style={{
-            padding: 0,
-          }}
-        />
+        <TopHeader></TopHeader>
         <Content
           style={{
-            margin: "24px 16px 0",
+            height: "100%",
+            padding: 24
           }}
         >
           <div
             className="site-layout-background"
             style={{
               padding: 24,
+              height: "100%",
               minHeight: 360,
             }}
           >
-            content
+            <Outlet />
           </div>
         </Content>
-        <Footer
-          style={{
-            textAlign: "center",
-          }}
-        >
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );

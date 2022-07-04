@@ -1,42 +1,42 @@
 import { Menu } from "antd";
 import Sider from "antd/lib/layout/Sider";
-import React, { useState } from "react";
-
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom"
+import {BarsOutlined} from "@ant-design/icons";
 
 export default function SideMenu() {
-  const [collapsed] = useState(false);
+  const [items, setItems] = useState([])
+  const navigate = useNavigate()
+  const location = useLocation()
+  useEffect(() => {
+    getMenuItem()
+  }, [])
+  function getMenuItem () {
+    axios.get('/posts').then(res => {
+      function menuAddIcon (data) {
+        data.forEach(item => {
+          if (item.children) {
+            menuAddIcon(item.children)
+          }
+          item.icon = <BarsOutlined />
+        })
+      }
+      menuAddIcon(res.data)
+      setItems( res.data )
+    })
+  }
+  function menuChange (e) {
+    console.log(e)
+    navigate(e.key)
+  }
+  const pathname = location.pathname
+  const defaultOpenMenu = '/' +pathname.split('/')[1]
   return (
-    <Sider
-      breakpoint="lg"
-      collapsedWidth="0"
-      onBreakpoint={(broken) => {
-        console.log(broken);
-      }}
-      onCollapse={(collapsed, type) => {
-        console.log(collapsed, type);
-      }}
-    >
-      <div className="logo" />
-      <Menu
-        theme="dark"
-        mode="inline"
-        defaultSelectedKeys={["4"]}
-        items={[
-          UserOutlined,
-          VideoCameraOutlined,
-          UploadOutlined,
-          UserOutlined,
-        ].map((icon, index) => ({
-          key: String(index + 1),
-          icon: React.createElement(icon),
-          label: `nav ${index + 1}`,
-        }))}
-      />
-    </Sider>
+      <Sider trigger={null} collapsible collapsed={false} collapsedWidth={60}>
+        <div className="col-w ta-c fz-24 lh-64 h-64">news system</div>
+          <Menu items={items} onClick={menuChange} theme="dark" defaultOpenKeys={[defaultOpenMenu]} defaultSelectedKeys={[pathname]} mode="inline">
+          </Menu>
+      </Sider>
   );
 }

@@ -5,9 +5,14 @@
 }
 
 .site-layout-sub-header-background {
-  background: #fff;
+  background: #fff!important;
 }
-
+.ant-layout-sider-zero-width-trigger {
+  top: 11px!important;
+  right: -44px!important;
+  background: white!important;
+  color: black!important;
+}
 .site-layout-background {
   background: #fff;
 }

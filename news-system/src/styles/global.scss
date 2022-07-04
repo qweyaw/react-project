@@ -1,1 +1,39 @@
 @import '~antd/dist/antd.css';
+
+.fl-row {
+  flex-direction: row;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+.point {
+  cursor: pointer;
+}
+.col-w{
+  color: white;
+}
+.ta-c {
+  text-align: center;
+}
+.fz-24{
+  font-size: 20px;
+}
+.lh-64 {
+  line-height: 64px;
+}
+.h-64 {
+  height: 64px;
+}
+.m-0 {
+  margin: 0;
+}
+.w-100vw {
+  width: 100vw;
+}
+.h-100vh {
+  height: 100vh;
+}

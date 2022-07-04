@@ -15,8 +15,8 @@ export default function Router() {
         <Route path="/" element={<Navigate to="/home" />}></Route>
         <Route path="/" element={<NewSandBox />}>
           <Route path="/home" element={<Home />}></Route>
-          <Route path="/user-manage/list" element={<UserList />}></Route>
-          <Route path="/right-manage/role/list" element={<RoleList />}></Route>
+          <Route path="/user-manager/list" element={<UserList />}></Route>
+          <Route path="/right-manager/role/list" element={<RoleList />}></Route>
           <Route
             path="/right-manager/right/list"
             element={<RightList />}
