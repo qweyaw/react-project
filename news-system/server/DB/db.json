@@ -1,34 +1,34 @@
 {
-  "posts": [
+  "getMenuList": [
       { "label": "首页", "key": "/home" },
       {
         "label": "用户管理",
-        "key": "/user-manager",
-        "children": [{ "label": "用户列表", "key": "/user-manager/list" }]
+        "key": "/user-manage",
+        "children": [{ "label": "用户列表", "key": "/user-manage/list" }]
       },
       {
         "label": "权限管理",
-        "key": "/right-manager",
+        "key": "/right-manage",
         "children": [
-          { "label": "角色列表", "key": "/right-manager/role/list" },
-          { "label": "权限列表", "key": "/right-manager/right/list" }
+          { "label": "角色列表", "key": "/right-manage/role/list" },
+          { "label": "权限列表", "key": "/right-manage/right/list" }
         ]
       },
       {
         "label": "新闻管理",
-        "key": "/22",
+        "key": "/news-manage",
         "children": [
           { "label": "用户列表", "key": "/3" }
         ]
       },
       {
-        "label": "用户管理",
+        "label": "审核管理",
         "key": "/33",
         "children": [{ "label": "用户列表", "key": "/1"  }]
       },
       {
-        "label": "用户管理",
-        "key": "/11",
+        "label": "发布管理",
+        "key": "/audit-manage",
         "children": [{ "label": "用户列表", "key": "/2"  }]
       }
   ],

@@ -4,16 +4,26 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom"
 import {BarsOutlined} from "@ant-design/icons";
+import { getMenuList } from "../../constans";
+import store from "../../store/store";
 
 export default function SideMenu() {
-  const [items, setItems] = useState([])
+  const {collapsedReducer} = store.getState()
+  console.log(store.getState())
+  const [items, setItems] = useState([{ label: '首页', key: '/home', icon: <BarsOutlined /> },
+    {
+      label: '用户管理',
+      key: '/user-manager',
+      icon: <BarsOutlined />,
+      children: [{ label: '用户列表', key: '/user-manage/list' }],
+    },])
   const navigate = useNavigate()
   const location = useLocation()
   useEffect(() => {
-    getMenuItem()
+    // getMenuItem()
   }, [])
   function getMenuItem () {
-    axios.get('/posts').then(res => {
+    axios.get(getMenuList).then(res => {
       function menuAddIcon (data) {
         data.forEach(item => {
           if (item.children) {
@@ -33,7 +43,7 @@ export default function SideMenu() {
   const pathname = location.pathname
   const defaultOpenMenu = '/' +pathname.split('/')[1]
   return (
-      <Sider trigger={null} collapsible collapsed={false} collapsedWidth={60}>
+      <Sider trigger={null} collapsible collapsed={collapsedReducer} collapsedWidth={60}>
         <div className="col-w ta-c fz-24 lh-64 h-64">news system</div>
           <Menu items={items} onClick={menuChange} theme="dark" defaultOpenKeys={[defaultOpenMenu]} defaultSelectedKeys={[pathname]} mode="inline">
           </Menu>

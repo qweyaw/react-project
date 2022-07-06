@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout, Dropdown, Avatar, Menu, Space } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/icons";
 const { Header } = Layout;
+import store from "../../store/store";
+const {collapsed} = store.getState()
 const menu = (
   <Menu
     items={[
@@ -22,9 +24,8 @@ const menu = (
   />
 );
 export default function TopHeader() {
-  const [collapsed, setCollapsed] = useState(false);
   function changeCollapsed () {
-    setCollapsed(!collapsed)
+    store.dispatch({type: 'collapsed'})
   }
   return (
     <Header
